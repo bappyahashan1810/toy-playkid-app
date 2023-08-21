@@ -1,4 +1,5 @@
 import React from 'react';
+import { Toaster, toast } from 'react-hot-toast';
 import { BiAddToQueue } from 'react-icons/bi';
 
 const AddToy = () => {
@@ -25,6 +26,11 @@ const AddToy = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                if (data.insertedId) {
+                    toast.success('Successfully Added');
+                    form.reset();
+                }
+
             })
 
     }
@@ -119,6 +125,10 @@ const AddToy = () => {
                     </div>
                 </div>
             </form>
+            <Toaster
+                position="bottom-center"
+                reverseOrder={false}
+            />
         </div>
     );
 };
